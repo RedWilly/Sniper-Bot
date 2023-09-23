@@ -7,30 +7,24 @@ If there is enough public interest in the token during launch day, the bot has p
 
 [Bot Preview](https://twitter.com/i/status/1494781960350314507)
 
-## :warning: Notice :warning:
-**This is an outdated version**. The new version makes use of :
-- [Rust](https://www.rust-lang.org/) for the blazingly fast speeeeeeed 
-- [Flashbots](https://www.npmjs.com/package/@flashbots/ethers-provider-bundle) to avoid the transaction getting sandwhiched attacked due to high slippage (only on ethereum)
 
 ## Technolody Stack & Tools
 - Javascript (bot & testing scripts)
 - [Node.js](https://nodejs.org/en/docs/guides/) (js runtime envrionment for scripts)
 - [Ethers.js](https://docs.ethers.io/v5/) (blockchain interaction)
-- [Ganache](https://github.com/trufflesuite/ganache-cli-archive) (cli based personal local blockchain simulator)
-- [Alchemy](https://docs.alchemy.com/alchemy/) (node provider)
-- [Ethernal](https://doc.tryethernal.com/) (local blockchain explorer [optional])
+
 
 ## How To Run The Bot
 ### Installation
 To install this repo and all its dependencies run
 ```
-git clone https://github.com/NME-eth/Listing-Sniping-Bot
-cd Listing-Sniping-Bot
+git clone https://github.com/RedWilly/Sniper-Bot
+cd Sniper-Bot
 npm install
 ```
 ### Setup & Config
 This project uses [dotenv](https://github.com/motdotla/dotenv#readme) to handle all config variables. To set it up, create a `.env` file in the **project home directory** and edit it to include the following variables:
-- `MNEMONIC` 12 word mnemonic phrase for a HDWallet
+- `PRIVATE_KEY` private key here
 - `NODE_URL` **http url** of the node that the bot will connect to
 - `ROUTER_ADDR` dex router address
 - `FACTORY_ADDR` dex factory address
@@ -38,11 +32,10 @@ This project uses [dotenv](https://github.com/motdotla/dotenv#readme) to handle 
 - `TOKEN_OUT_NAME` **name of the token that we want to snipe**
 - `SELL_AMT` amount of token that we want to send to router (amount of token_in to swap)
 - `MIN_LIQUIDITY` the minimum amount of liquidity the pool needs for a trade to be executed
-- `IMPERSONATE` whale address used for testing to create initial liquidity pool
 
 an example of a `.env` config file 
 ```
-MNEMONIC=<12-work-mnemonic-here>
+PRIVATE_KEY=<64 hex-here>
 NODE_URL=<node-provider-url-here>
 ROUTER_ADDR=0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D # uni router
 FACTORY_ADDR=0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f # uni factory
@@ -50,9 +43,8 @@ TOKEN_IN_ADDR=0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2 # weth addr
 TOKEN_OUT_NAME=<name-of-token-to-snipe>
 SELL_AMT=10 # swap 10weth for the token we want to snipe
 MIN_LIQUIDITY=100 # pool needs atleast 100 weth for bot to make trade
-IMPERSONATE=0xE78388b4CE79068e89Bf8aA7f218eF6b9AB0e9d0 # avax bridge 
 ```
->It makes most sense to use a highly liquid token such as weth/matic/dai/... for the value of `TOKEN_IN_ADDR` so that the bot won't be hit as hard by slippage when swapping
+>It makes most sense to use a highly liquid token such as weth/matic/dai/usdt/... for the value of `TOKEN_IN_ADDR` so that the bot won't be hit as hard by slippage when swapping
 
 >`MIN_LIQUIDITY` stops the bot from buying fake tokens with the same name as the token we are trying to snipe because the pair's pool reserves need to meet a certain threshold. Should be pretty high e.g. 200eth
 
@@ -93,19 +85,6 @@ ganache -f https://polygon-mainnet.g.alchemy.com/v2/<your-alchemy-api-key-here> 
 
 >I reccomend using [alchemy](https://docs.alchemy.com/alchemy/) as your provider especially when creating mainnet forks, because of their caching
 
-### Setting Up The .env File
-Set up the `.env` file with the following variables for the test to work
-```
-MNEMONIC=<12-work-mnemonic-here>
-NODE_URL=http://127.0.0.1:8545 # ganache rpc url
-ROUTER_ADDR=0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff # quickswap router
-FACTORY_ADDR=0x5757371414417b8C6CAad45bAeF941aBc7d3Ab32 # uni factory
-TOKEN_IN_ADDR=0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619 # weth addr
-TOKEN_OUT_NAME=MILK
-SELL_AMT=10 
-MIN_LIQUIDITY=100 
-IMPERSONATE=0x72A53cDBBcc1b9efa39c834A540550e23463AAcB # unlocked whale acc
-```
 
 ### Running The Bot
 Open a new terminal instance and run the bot. The bot script should be **called from the project home directory**.
