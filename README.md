@@ -1,4 +1,4 @@
-# Listing Sniping Bot
+ # Listing Sniping Bot
 When a new token gets listed on a DEX, bots are able to detect the **PairCreated event emitted from the DEX's factory contract.** This information can be used in the bot's favour by allowing them to be one of the first to buy the newly listed token at a **very low price.**
 
 This repo explores this idea by showing an implementation of a bot that snipes **specific** tokens as soon as they are listed. This bot works under the assumption that **the name of the token to snipe is known before launch.** 
@@ -114,7 +114,7 @@ We can use [Ethernal](https://doc.tryethernal.com/) to set up a more verbose blo
 Ethernal can be set up by following the steps outlined [here](https://doc.tryethernal.com/getting-started/quickstart). Once it is set up, you can import mainnet contracts and see all transaction/block details.
 
 ## Contribution
-If you find any issues or ways to improve this project, create a pull request and it will be merged into the main branch if accepted.
+If you find any issues or ways to improve this project like percentage to sell(profit), create a pull request and it will be merged into the main branch if accepted.
 
 Credits to Julien from ETB as their repo [here](https://github.com/jklepatch/eattheblocks/tree/master/screencast/322-uniswap-trading-bot) helped massively in builing this project.
 
