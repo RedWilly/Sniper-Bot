@@ -113,9 +113,6 @@ We can use [Ethernal](https://doc.tryethernal.com/) to set up a more verbose blo
 
 Ethernal can be set up by following the steps outlined [here](https://doc.tryethernal.com/getting-started/quickstart). Once it is set up, you can import mainnet contracts and see all transaction/block details.
 
-Preview of Ethernal's interface
-![Ethernal Preview](./EthernalScreenShot.png)
-
 ## Contribution
 If you find any issues or ways to improve this project, create a pull request and it will be merged into the main branch if accepted.
 
